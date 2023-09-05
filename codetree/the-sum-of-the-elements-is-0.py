@@ -1,3 +1,4 @@
+# O(N^2)
 import sys
 input = sys.stdin.readline
 
@@ -15,16 +16,18 @@ for i in range(n):
         try:
             first_dic[a[i] + b[j]] += 1
         except:
-            first_dic = 1
+            first_dic[a[i] + b[j]] = 1
 
         try:
             second_dic[c[i] + d[j]] += 1
         except:
-            second_dic = 1
+            second_dic[c[i] + d[j]] = 1
 
 cnt = 0
 for k in first_dic.keys():
-    if second_dic in -k:
-        cnt += 1
+    try:
+        cnt += first_dic[k] * second_dic[-k]
+    except:
+        pass
 
 print(cnt)

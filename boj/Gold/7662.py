@@ -8,7 +8,7 @@ for _ in range(t):
     n = int(input())
     a = []
     d = []
-    s = set()
+    dic = dict()
     for _ in range(1, n + 1):
         cmd, key = input().rstrip().split()
         key = int(key)
@@ -16,17 +16,20 @@ for _ in range(t):
         if cmd == "I":
             heapq.heappush(d, key)
             heapq.heappush(a, -key)
-            s.add(key)
+            try:
+                dic[key] += 1
+            except:
+                dic[key] = 1
         elif cmd == "D":
             if len(s) == 0:
                 continue
-            elif key == -1 and d[0] in s:
+            elif key == -1 and dic[d[0]] != 0:
                 t = heapq.heappop(d)
-                s.remove(t)
-            elif key == 1 and -a[0] in s:
+                dic[t] -= 1
+            elif key == 1 and dic[-a[0]] != 0:
                 t = heapq.heappop(a)
-                s.remove(-t)
-    if len(s) == 0:
+                dic[-t] -= 1
+    if not any(dic.values()):
         print("EMPTY")
     else:
         min_val = heapq.heappop(d)

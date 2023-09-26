@@ -1,11 +1,5 @@
-n = int(input())
+a, b, v = map(int, input().split())
 
-i = 0
-while True:
-    if n == 1:
-        print(1)
-        break
-    i += 1
-    if 3 * (i ** 2) - 3 * i + 2 <= n <= 3 * (i ** 2) + 3 * i + 1:
-        print(i + 1)
-        break
+t = (v - a - b) // (a - b) + 2 if (v - a -
+                                   b) % (a - b) <= a else (v - a - b) // (a - b) + 2
+print(t)

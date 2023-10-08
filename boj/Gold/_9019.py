@@ -45,30 +45,33 @@ for _ in range(t):
     while queue:
         cur_n = queue.popleft()
 
+        if visited[cur_n] and cur_n != a:
+            continue
+
         d, s, l, r = D(cur_n), S(cur_n), L(cur_n), R(cur_n)
 
-        if not visited[d]:
+        if not visited[d] or len(visited[d]) > len(visited[cur_n]) + 1:
             if d == b:
                 print(visited[cur_n] + "D")
                 break
             queue.append(d)
             visited[d] = visited[cur_n] + "D"
 
-        if not visited[s]:
+        if not visited[s] or len(visited[s]) > len(visited[cur_n]) + 1:
             if s == b:
                 print(visited[cur_n] + "S")
                 break
             queue.append(s)
             visited[s] = visited[cur_n] + "S"
 
-        if not visited[l]:
+        if not visited[l] or len(visited[l]) > len(visited[cur_n]) + 1:
             if l == b:
                 print(visited[cur_n] + "L")
                 break
             queue.append(l)
             visited[l] = visited[cur_n] + "L"
 
-        if not visited[r]:
+        if not visited[r] or len(visited[r]) > len(visited[cur_n]) + 1:
             if r == b:
                 print(visited[cur_n] + "R")
                 break

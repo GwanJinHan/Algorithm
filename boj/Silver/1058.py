@@ -20,6 +20,7 @@ for inter in range(n):
 
 ans = -1
 
+
 for val in arr:
     ans = max(ans, val.count("Y") + val.count("y"))
 

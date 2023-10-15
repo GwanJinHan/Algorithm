@@ -2,28 +2,21 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
+arr = []
+for _ in range(n):
+    arr.append(list(map(int, input().split())))
 
-d = {}
-
+prefix = [[0] * (n + 1) for _ in range(n + 1)]
 for r in range(1, n + 1):
-    total = 0
-    t = list(map(int, input().split()))
-
     for c in range(1, n + 1):
-        total += t[c - 1]
-        d[f'{r}{c}'] = total
+        prefix[r][c] = prefix[r - 1][c] + prefix[r][c - 1] - \
+            prefix[r - 1][c - 1] + arr[r - 1][c - 1]
 
 ans = []
-
 for _ in range(m):
-    answer = 0
-    r1, c1, r2, c2 = list(map(int, input().split()))
+    x1, y1, x2, y2 = map(int, input().split())
+    ans.append(prefix[x2][y2] - prefix[x1 - 1][y2] -
+               prefix[x2][y1 - 1] + prefix[x1 - 1][y1 - 1])
 
-    for i in range(r1, r2 + 1):
-        answer += d[f'{i}{c2}'] - d[f'{i}{c1 - 1}'] if c1 - \
-            1 != 0 else d[f'{i}{c2}']
-
-    ans.append(answer)
-
-for val in ans:
-    print(val)
+for a in ans:
+    print(a)

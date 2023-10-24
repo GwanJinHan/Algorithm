@@ -1,5 +1,5 @@
 import sys
-from heapq import heappop
+from heapq import heappop, heappush
 input = sys.stdin.readline
 
 v, e = map(int, input().split())

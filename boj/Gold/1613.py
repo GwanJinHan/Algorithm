@@ -1,9 +1,8 @@
 import sys
 input = sys.stdin.readline
-print = sys.stdout.write
 
 n, k = map(int, input().split())
-arr = [[float('inf') for _ in range(n)] for _ in range(n)]
+arr = [[0 for _ in range(n)] for _ in range(n)]
 
 for _ in range(k):
     a, b = map(int, input().split())
@@ -24,7 +23,4 @@ for inter in range(n):
 t = int(input())
 for _ in range(t):
     a, b = map(int, input().split())
-    if arr[a - 1][b - 1] == float('inf'):
-        print("0\n")
-    else:
-        print(str(arr[a - 1][b - 1]) + "\n")
+    print(str(arr[a - 1][b - 1]))

@@ -3,7 +3,7 @@ class Node():
         self.data = elem
         self.link = link
 
-https://gurumee92.tistory.com/113
+
 class LinkedQueue:
     def __init__(self):
         self.front = None
@@ -13,13 +13,13 @@ class LinkedQueue:
         return self.front == None and self.rear == None
 
     def enqueue(self, elem):
-        node = Node(elem, None)
+        new_node = Node(elem, None)
         if self.isEmpty():
-            self.front = node
-            self.rear = node
+            self.front = new_node
+            self.rear = new_node
         else:
-            self.rear.link = node
-            self.rear = node
+            self.rear.link = new_node
+            self.rear = new_node
 
     def dequeue(self):
         if self.isEmpty():
@@ -46,8 +46,9 @@ class LinkedQueue:
 
         return length
 
-    def display(self, ment):
-        print(ment, end="")
+    def display(self, s):
+        print(s, end="")
+
         link = self.front
         while link != None:
             print(link.data, end=" ")

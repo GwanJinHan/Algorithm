@@ -17,13 +17,22 @@ queue = [(0, 0)]
 while queue:
     w, i = heappop(queue)
 
-    if len(d[i]) != 0 and d[i][0] < w:
+    if len(d[i]) != 0 and - d[i][0] < w:
         continue
 
     for node, weight in graph[i]:
         if len(d[node]) < k:
-            heappush(d[node], (d[i] + weight))
-            heappush(queue, (d[node], node))
+            heappush(d[node], - (w + weight))
+            heappush(queue, ((w + weight), node))
         else:
-            t = heappop(d[node])
-            heappush(d[node], )
+            t = -heappop(d[node])
+            heappush(d[node], -min(t, w + weight))
+            heappush(queue, (min(t, w + weight), node))
+
+print(d)
+
+for val in d:
+    try:
+        print(-heappop(val))
+    except:
+        print(-1)

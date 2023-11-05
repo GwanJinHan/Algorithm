@@ -1,26 +1,11 @@
 n = int(input())
 arr = list(map(int, input().split()))
 
-firstList = [0]
-secondList = [arr[0]]
+dp = [1] * n
 
-for i, val in enumerate(arr):
-    if i == 0:
-        continue
-    if val > arr[i - 1]:
-        for k, s in enumerate(secondList):
-            if s > val:
-                key = k - 1
-                secondList[key] = val
-                break
-        else:
-            secondList.append(val)
-    else:
-        for j, a in enumerate(secondList):
-            if val <= a:
-                secondList[j] = val
-                firstList.append(j)
-                break
-# val:2,
-print(firstList)
-print(secondList)
+for i in range(n):
+    for j in range(i):
+        if arr[j] < arr[i]:
+            dp[i] = max(dp[i], dp[j] + 1)
+
+print(max(dp))

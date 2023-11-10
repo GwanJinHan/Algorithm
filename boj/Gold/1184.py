@@ -26,7 +26,7 @@ for r in range(n - 1, -1, -1):
 
 for r in range(1, n + 1):
     for c in range(n - 1, -1, -1):
-        rightupleftdown[r][c] = arr[r - 1][c - 1] \
+        rightupleftdown[r][c] = arr[r - 1][c] \
             + rightupleftdown[r - 1][c] + rightupleftdown[r][c +
                                                              1] - rightupleftdown[r - 1][c + 1]
 
@@ -41,11 +41,8 @@ cnt = 0
 for i in range(1, n):
     for j in range(1, n):
         d = {}
-        for r in range(i + 1):
-            for c in range(j + 1):
-
-                if r == i and c == j:
-                    continue
+        for r in range(i):
+            for c in range(j):
 
                 t = leftuprightdown[i][j] - leftuprightdown[r][j] - \
                     leftuprightdown[i][c] + leftuprightdown[r][c]
@@ -54,12 +51,9 @@ for i in range(1, n):
                     d[t] += 1
                 except:
                     d[t] = 1
-        print(d)
-        for r in range(i, n + 1):
-            for c in range(j, n + 1):
 
-                if r == i and c == j:
-                    continue
+        for r in range(i + 1, n + 1):
+            for c in range(j + 1, n + 1):
 
                 t = rightdownleftup[i][j] - rightdownleftup[r][j] - \
                     rightdownleftup[i][c] + rightdownleftup[r][c]
@@ -69,15 +63,12 @@ for i in range(1, n):
                 except:
                     pass
 
-print(cnt)
+
 for i in range(1, n):
     for j in range(1, n):
         d = {}
-        for r in range(i + 1):
-            for c in range(j, n + 1):
-
-                if r == i and c == j:
-                    continue
+        for r in range(i):
+            for c in range(j + 1, n + 1):
 
                 t = rightupleftdown[i][j] - rightupleftdown[r][j] - \
                     rightupleftdown[i][c] + rightupleftdown[r][c]
@@ -86,13 +77,9 @@ for i in range(1, n):
                     d[t] += 1
                 except:
                     d[t] = 1
-        print(d)
 
-        for r in range(i, n + 1):
-            for c in range(j + 1):
-
-                if r == i and c == j:
-                    continue
+        for r in range(i + 1, n + 1):
+            for c in range(j):
 
                 t = leftdownrightup[i][j] - leftdownrightup[r][j] - \
                     leftdownrightup[i][c] + leftdownrightup[r][c]
